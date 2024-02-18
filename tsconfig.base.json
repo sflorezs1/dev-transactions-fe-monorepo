@@ -15,9 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@eafit/FileTypes": [
-        "libs/file-types/src/index.ts"
-      ]
+      "@eafit/FileTypes": ["libs/file-types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
