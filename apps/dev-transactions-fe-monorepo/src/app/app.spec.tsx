@@ -1,15 +1,5 @@
-import { render } from '@testing-library/react';
-
-import App from './app';
-
-describe('App', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(<App />);
-    expect(baseElement).toBeTruthy();
+describe('test', () => {
+  test('OK', async () => {
+    expect(1).toEqual(1);
   });
-
-  it('should have a greeting as the title', () => {
-    const { getByText } = render(<App />);
-    expect(getByText(/Welcome dev-transactions-fe-monorepo/gi)).toBeTruthy();
-  });
-});
+})

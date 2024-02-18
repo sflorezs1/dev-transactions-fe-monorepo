@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@eafit/FileTypes": [
-        "libs/file-types/src/index.ts"
+      "@dev-transactions-fe-monorepo/libs/files": [
+        "libs/libs/files/src/index.ts"
       ]
     }
   },
