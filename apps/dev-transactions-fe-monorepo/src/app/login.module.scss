@@ -1,4 +1,143 @@
-/* Your styles goes here. */
-.root {
-    background-color: green;
-}
+// src/app/login/login.module.scss
+.loginBackground {
+    background-image: linear-gradient(to bottom right, #7e5bec, #2b8ded);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #ffffff;
+  }
+  
+  .loginContainer {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 20rem;
+    max-width: 90%;
+  }
+  
+  .loginTitle {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+  }
+  
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .inputContainer {
+    position: relative;
+    margin-bottom: 1rem;
+  
+    .inputLabel {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+  
+    .inputField {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid transparent;
+      border-radius: 0.5rem;
+      background-color: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      font-size: 1rem;
+      color: inherit;
+  
+      &:focus {
+        outline: none;
+        border-color: #5e81ac;
+        background-color: rgba(255, 255, 255, 0.75);
+      }
+    }
+  
+    .bi {
+      position: absolute;
+      right: 10px;
+      top: 38px;
+      color: #ffffff;
+    }
+  }
+  
+  .formOptions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  
+    .checkboxContainer {
+      display: flex;
+      align-items: center;
+  
+      .checkboxLabel {
+        margin-left: 0.5rem;
+      }
+    }
+  
+    .forgotPassword {
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
+  
+  .loginButton {
+    background: #81a1c1;
+    color: #ffffff;
+    padding:0.75rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background: #5e81ac;
+    }
+  }
+  
+  .registerContainer {
+    text-align: center;
+  
+    .registerLink {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+  
+      &:hover {
+        color: #81a1c1;
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  /* Additional styles for the "Remember me" checkbox */
+  .checkboxCustom {
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    display: grid;
+    place-content: center;
+    width: 1em;
+    height: 1em;
+  
+    &:checked::before {
+      content: '\\2713'; /* Unicode checkmark */
+      font-size: 0.65rem;
+      color: #495057;
+    }
+  }
+  
+  
