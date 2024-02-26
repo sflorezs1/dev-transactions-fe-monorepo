@@ -3,7 +3,7 @@ import styles from './login.module.scss';
 
 const Login = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+ const [password, setPassword] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -58,5 +58,5 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login; 
 
