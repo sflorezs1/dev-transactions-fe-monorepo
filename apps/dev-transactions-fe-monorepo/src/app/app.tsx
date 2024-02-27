@@ -41,13 +41,11 @@ const files: File[] = _.times(10, () => ({
 export function App() {
   return (
     <Router>
-      <Container>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Navigate replace to="/login" />} />
           <Route path="/files" element={<FilesDisplaySwitcher files={files} />} />
         </Routes>
-      </Container>
     </Router>
   );
 }

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styles from './login.module.scss';
+import Logo from '../../public/devtran-logo.ico'
 
 const Login = () => {
   const [email, setEmail] = useState('');
- const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -12,6 +13,10 @@ const Login = () => {
 
   return (
     <div className={styles.loginBackground}>
+      <div className={styles.title}>
+        <img src={Logo} alt="Logo" className={styles.logo} />
+        DevTransactions
+      </div>
       <div className={styles.loginContainer}>
         <div className={styles.loginCard}>
           <h2 className={styles.loginTitle}>Login</h2>
@@ -45,11 +50,14 @@ const Login = () => {
 
             <div className={styles.loginActions}>
               <a href="#" className={styles.forgotPassword}>Forgot Password?</a>
-              <button type="submit" className={styles.loginButton}>Login</button>
             </div>
 
-            <div className={styles.registerLink}>
-              Don't have an account? <a href="#">Register</a>
+            <div className={styles.loginActions}>
+              <button type="submit" className={styles.loginButton}>Login</button>
+            </div>
+            <div>
+              <span>Don't have an account? </span>
+              <a href="#" className={styles.registerLink}>Register</a>
             </div>
           </form>
         </div>
@@ -58,5 +66,4 @@ const Login = () => {
   );
 };
 
-export default Login; 
-
+export default Login;
