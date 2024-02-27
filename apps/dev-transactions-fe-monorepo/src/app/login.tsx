@@ -1,37 +1,67 @@
-// src/app/login/login.tsx
 import React, { useState } from 'react';
-import './login.module.scss';
+import styles from './login.module.scss';
+import Logo from '../../public/devtran-logo.ico'
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(username, password);
+    console.log(email, password);
   };
 
   return (
-    <div className="login-container">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+    <div className={styles.loginBackground}>
+      <div className={styles.title}>
+        <img src={Logo} alt="Logo" className={styles.logo} />
+        DevTransactions
+      </div>
+      <div className={styles.loginContainer}>
+        <div className={styles.loginCard}>
+          <h2 className={styles.loginTitle}>Login</h2>
+          <form onSubmit={handleSubmit}>
+            <div className={styles.inputGroup}>
+              <i className="bi bi-envelope-fill"></i>
+              <input
+                type="email"
+                id="email"
+                placeholder="Email ID"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
 
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+            <div className={styles.inputGroup}>
+              <i className="bi bi-lock-fill"></i>
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
 
-        <button type="submit">Login</button>
-      </form>
+            <div className={styles.rememberMe}>
+              <input type="checkbox" id="rememberMe" />
+              <label htmlFor="rememberMe">Remember me</label>
+            </div>
+
+            <div className={styles.loginActions}>
+              <a href="#" className={styles.forgotPassword}>Forgot Password?</a>
+            </div>
+
+            <div className={styles.loginActions}>
+              <button type="submit" className={styles.loginButton}>Login</button>
+            </div>
+            <div>
+              <span>Don't have an account? </span>
+              <a href="#" className={styles.registerLink}>Register</a>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

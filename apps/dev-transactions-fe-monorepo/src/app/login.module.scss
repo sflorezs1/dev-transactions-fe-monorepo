@@ -1,4 +1,231 @@
-/* Your styles goes here. */
-.root {
-    background-color: green;
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; 
 }
+
+body {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  min-height: 100vh; 
+}
+
+.loginPage {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom right, #7e5bec, #2b8ded);
+}
+
+.logo {
+  width: 250px; 
+  height: auto;
+  margin-right: 10px;
+}
+.title {
+  font-size: 5rem;
+  color: #ffffff;
+  margin-right: 5rem;
+}
+
+.loginContainer {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 25rem;
+  height: 30rem;
+  max-width: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2rem; /* Adjust margin as needed */
+}
+
+.inputGroup input {
+  flex: 1;
+  padding: 1rem; 
+  border: 1px solid transparent;
+  border-radius: 1rem; 
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  font-size: 1rem;
+  color: inherit;
+
+  &:focus {
+    outline: none;
+    border-color: #5e81ac;
+    background-color: rgba(255, 255, 255, 0.75);
+  }
+}
+
+.inputGroup i {
+  margin-right: 1rem; 
+}
+
+.loginCard {
+  max-width: 20rem; 
+}
+
+
+.loginActions {
+  display: flex;
+  justify-content: center; 
+  margin-top: 1rem;
+}
+.loginBackground {
+  background: linear-gradient(to bottom right, #7e5bec, #2b8ded);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+}
+
+  .loginTitle {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+  }
+  
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .inputContainer {
+    position: relative;
+    margin-bottom: 1rem;
+  
+    .inputLabel {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+  
+    .inputField {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid transparent;
+      border-radius: 0.5rem;
+      background-color: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      font-size: 1rem;
+      color: inherit;
+      margin-bottom: 2rem;
+  
+      &:focus {
+        outline: none;
+        border-color: #5e81ac;
+        background-color: rgba(255, 255, 255, 0.75);
+      }
+    }
+  
+    .bi {
+      position: absolute;
+      right: 10px;
+      top: 38px;
+      color: #ffffff;
+    }
+  }
+  
+  .formOptions {
+    display: flex;
+    justify-content: column;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  
+    .checkboxContainer {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+  
+      .checkboxLabel {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  .forgotPassword {
+    margin-top: 0.5rem;
+    color: #ffffff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #0e4d8b;
+      text-decoration: underline;
+      }
+  }
+  
+  .loginButton {
+    background: #81a1c1;
+    color: #ffffff;
+    padding:0.75rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background: #5e81ac;
+    }
+  }
+
+  
+  .registerLink {
+    color: #ffffff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  
+    &:hover {
+      color: #0e4d8b;
+      text-decoration: underline;
+      }
+    }
+  
+  .checkboxCustom {
+    appearance: none;
+    background-color: #ffff;
+    margin: 0;
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    display: grid;
+    place-content: center;
+    width: 1em;
+    height: 1em;
+  
+    &:checked::before {
+      content: '\\2713';
+      font-size: 0.65rem;
+      color: #495057;
+    }
+  }
+  
+  
