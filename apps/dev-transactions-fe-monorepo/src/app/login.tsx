@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import styles from './login.module.scss';
-import Logo from '../../public/devtran-logo.ico'
+import Logo from './devtran-logo.ico';
+import RegistrationPopup from './RegistrationPopup';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(email, password);
+  };
+
+  const handleRegisterClick = (event) => {
+    event.preventDefault(); // Prevent default behavior of <a> tag
+    setShowPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
   };
 
   return (
@@ -17,6 +28,7 @@ const Login = () => {
         <img src={Logo} alt="Logo" className={styles.logo} />
         DevTransactions
       </div>
+      
       <div className={styles.loginContainer}>
         <div className={styles.loginCard}>
           <h2 className={styles.loginTitle}>Login</h2>
@@ -57,11 +69,13 @@ const Login = () => {
             </div>
             <div>
               <span>Don't have an account? </span>
-              <a href="#" className={styles.registerLink}>Register</a>
+              <a href="#" className={styles.registerLink} onClick={handleRegisterClick}>Register</a>
             </div>
           </form>
         </div>
       </div>
+
+      {showPopup && <RegistrationPopup handleClose={handleClosePopup} />}
     </div>
   );
 };
