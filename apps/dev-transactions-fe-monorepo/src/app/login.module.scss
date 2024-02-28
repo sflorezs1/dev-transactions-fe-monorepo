@@ -22,14 +22,14 @@ body {
 }
 
 .logo {
-  width: 250px; 
+  width: 180px; 
   height: auto;
   margin-right: 10px;
 }
+
 .title {
   font-size: 5rem;
   color: #ffffff;
-  margin-right: 5rem;
 }
 
 .loginContainer {
@@ -38,8 +38,8 @@ body {
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 25rem;
-  height: 30rem;
+  width: 25rem; 
+  height: 30rem; 
   max-width: 100%;
   max-height: 100%;
   box-sizing: border-box;
@@ -53,7 +53,9 @@ body {
   display: flex;
   align-items: center;
   width: 100%;
-  margin-bottom: 2rem; /* Adjust margin as needed */
+  margin-bottom: 2rem;
+  color: #46494b;
+  
 }
 
 .inputGroup input {
@@ -81,12 +83,14 @@ body {
   max-width: 20rem; 
 }
 
-
 .loginActions {
   display: flex;
   justify-content: center; 
   margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
 }
+
 .loginBackground {
   background: linear-gradient(to bottom right, #7e5bec, #2b8ded);
   background-position: center;
@@ -102,130 +106,114 @@ body {
   color: #ffffff;
 }
 
-  .loginTitle {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
-  }
-  
-  .loginForm {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .inputContainer {
-    position: relative;
-    margin-bottom: 1rem;
-  
-    .inputLabel {
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-  
-    .inputField {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid transparent;
-      border-radius: 0.5rem;
-      background-color: rgba(255, 255, 255, 0.5);
-      backdrop-filter: blur(8px);
-      font-size: 1rem;
-      color: inherit;
-      margin-bottom: 2rem;
-  
-      &:focus {
-        outline: none;
-        border-color: #5e81ac;
-        background-color: rgba(255, 255, 255, 0.75);
-      }
-    }
-  
-    .bi {
-      position: absolute;
-      right: 10px;
-      top: 38px;
-      color: #ffffff;
-    }
-  }
-  
-  .formOptions {
-    display: flex;
-    justify-content: column;
-    align-items: center;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-  
-    .checkboxContainer {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.5rem;
-  
-      .checkboxLabel {
-        margin-left: 0.5rem;
-      }
-    }
+.loginTitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .loginContainer {
+    width: 27rem; 
+    height: 30rem; 
   }
 
-  .forgotPassword {
-    margin-top: 0.5rem;
-    color: #ffffff;
-    font-weight: bold;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: #0e4d8b;
-      text-decoration: underline;
-      }
+  .title {
+    font-size: 5rem; 
+    margin-right: 2rem;
   }
-  
-  .loginButton {
-    background: #81a1c1;
-    color: #ffffff;
-    padding:0.75rem 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    transition: background-color 0.3s ease;
-  
-    &:hover {
-      background: #5e81ac;
-    }
+}
+
+@media only screen and (max-width: 767px) {
+  .loginContainer {
+    width: 20rem; 
+    height: 28rem; 
   }
 
-  
-  .registerLink {
-    color: #ffffff;
-    font-weight: bold;
-    transition: color 0.3s ease;
-  
-    &:hover {
-      color: #0e4d8b;
-      text-decoration: underline;
-      }
-    }
-  
-  .checkboxCustom {
-    appearance: none;
-    background-color: #ffff;
-    margin: 0;
-    cursor: pointer;
-    padding: 0.5rem;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    display: grid;
-    place-content: center;
-    width: 1em;
-    height: 1em;
-  
-    &:checked::before {
-      content: '\\2713';
-      font-size: 0.65rem;
-      color: #495057;
-    }
+  .title {
+    font-size: 4rem; 
   }
-  
-  
+}
+
+.loginButton {
+  background: #81a1c1;
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.forgotPassword {
+  color: #ffffff;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+.registerLink {
+  color: #ffffff;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+.additionalText {
+  text-align: center;
+  font-weight: lighter;
+  font-size: 2.5rem;
+  margin-left: 5rem;
+}
+
+.registrationPopup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+.registrationContent {
+  background-color: #fefefe;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 10px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.registrationForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.registrationCard {
+  background: linear-gradient(to bottom right, #9885d3, #508ac4);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 25rem; 
+  max-width: 100%;
+  box-sizing: border-box;
+}
