@@ -9,7 +9,7 @@ import Login from './login/login';
 import _ from 'lodash';
 import Chance from 'chance';
 import { File } from '@dev-transactions-fe-monorepo/libs/files';
-import styles from './files-style/file-module.scss';
+import styles from './app.module.scss';
 
 const chance = new Chance();
 
