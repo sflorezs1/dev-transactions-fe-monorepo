@@ -10,10 +10,10 @@ import _ from 'lodash';
 import Chance from 'chance';
 import { File } from '@dev-transactions-fe-monorepo/libs/files';
 import styles from './app.module.scss';
+import Header from './header';
 
 const chance = new Chance();
 
-// Example files array
 const files: File[] = _.times(10, () => ({
   filename: chance.name(),
   type: chance.pickone([
@@ -45,10 +45,19 @@ export function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Navigate replace to="/login" />} />
-        <Route path="/files" element={<div className={styles.loginBackground}><FilesDisplaySwitcher files={files} /></div>} />
+        <Route path="/files/*" element={<div className={styles.loginBackground}><FilesDisplayWithHeader files={files} /></div>} />
       </Routes>
     </Router>
   );
 }
+
+const FilesDisplayWithHeader = ({ files }: { files: File[] }) => {
+  return (
+    <>
+      <Header />
+      <FilesDisplaySwitcher files={files} />
+    </>
+  );
+};
 
 export default App;

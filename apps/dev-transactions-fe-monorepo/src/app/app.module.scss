@@ -14,3 +14,26 @@
     padding: 0;
     color: #ffffff;
   }
+
+.headerBackground {
+    background-color: rgba(126, 91, 236, 0.5);
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    height: 80px; 
+  }
+  
+  .logo {
+    width: 90px; 
+    height: 90px;
+    margin-left: 38px;
+  }
+  
+.navLink {
+    font-size: 25px;
+    color: #ffffff;
+  }
