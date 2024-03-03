@@ -5,10 +5,11 @@ import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import FilesDisplaySwitcher from '../file-display-switcher/FileDisplaySwitcher';
-import Login from './login';
+import Login from './login/login';
 import _ from 'lodash';
 import Chance from 'chance';
 import { File } from '@dev-transactions-fe-monorepo/libs/files';
+import styles from './files-style/file-module.scss';
 
 const chance = new Chance();
 
@@ -41,11 +42,11 @@ const files: File[] = _.times(10, () => ({
 export function App() {
   return (
     <Router>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Navigate replace to="/login" />} />
-          <Route path="/files" element={<FilesDisplaySwitcher files={files} />} />
-        </Routes>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Navigate replace to="/login" />} />
+        <Route path="/files" element={<div className={styles.loginBackground}><FilesDisplaySwitcher files={files} /></div>} />
+      </Routes>
     </Router>
   );
 }
