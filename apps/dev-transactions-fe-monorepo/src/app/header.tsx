@@ -15,7 +15,7 @@ const Header = () => {
         <Nav className="">
           <Nav.Link  as={Link} to="/download" className={styles.navLink}>Download</Nav.Link>
           <Nav.Link as={Link} to="/edit" className={styles.navLink}>Edit</Nav.Link>
-          <Nav.Link as={Link} to="/transfer" className={styles.navLink}>Transfer</Nav.Link>
+          <Nav.Link as={Link} to="/transfer" className={styles.navLink}>Transfer Operator</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
