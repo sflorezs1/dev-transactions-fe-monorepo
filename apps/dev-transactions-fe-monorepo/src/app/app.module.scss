@@ -2,3 +2,70 @@
 .root {
     background-color: green;
 }
+
+.loginBackground {
+    background: linear-gradient(to bottom right, #7e5bec, #2b8ded);
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    color: #ffffff;
+  }
+
+.headerBackground {
+    background-color: rgba(126, 91, 236, 0.5);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+  width: 120px; 
+  height: 120px;
+  margin-left: 38px;
+} 
+  
+  
+.navLink {
+  font-size: 25px;
+  color: rgba(255, 255, 255, 0.8); 
+  border: 1px solid rgba(255, 255, 255, 0.08); 
+  padding: 10px 5px;
+  margin-right: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: border-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.8); 
+    color: #ffffff; 
+  }
+}
+.navDropdown {
+  font-size: 25px;
+  color: rgba(255, 255, 255, 0.8) !important; 
+  border: 1px solid rgba(255, 255, 255, 0.08); 
+  padding: 5px 5px;
+  margin-right: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: border-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.8); 
+    color: #ffffff !important; 
+  }
+}
+
+.headerNavRight {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-right: 38px;
+    flex: 1;
+}

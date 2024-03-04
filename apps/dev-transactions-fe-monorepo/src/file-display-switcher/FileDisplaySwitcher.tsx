@@ -11,7 +11,7 @@ const FilesDisplaySwitcher: React.FC<{ files: File[] }> = ({ files }) => {
   return (
     <>
       <Container className="d-flex justify-content-end">
-        <ButtonGroup className="mb-2">
+        <ButtonGroup className="mb-2 mt-4">
           <ToggleButton
             id="1"
             type="radio"
