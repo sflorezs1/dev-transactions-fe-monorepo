@@ -1,27 +1,28 @@
-/* Your styles goes here. */
+/* Dont touch loginBackground */
 .root {
-    background-color: green;
+  background-color: green;
 }
 
 .loginBackground {
-    background: linear-gradient(to bottom right, #7e5bec, #2b8ded);
-    background-repeat: no-repeat;
-    background-size: cover;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    padding: 0;
-    color: #ffffff;
-  }
+  background: linear-gradient(to bottom right, #7e5bec, #2b8ded);
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  color: #ffffff;
+}
 
 .headerBackground {
-    background-color: rgba(126, 91, 236, 0.5);
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: rgba(126, 91, 236, 0.5);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
 }
 
 .logo {
@@ -29,43 +30,47 @@
   height: 120px;
   margin-left: 38px;
 } 
-  
-  
+
+.title {
+  position:absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(238, 221, 221); 
+  font-size: 70px;
+  font-family:sans-serif;
+  margin-left: 2rem;
+  text-decoration:fade-in($color: #ffffff, $amount: 1), solid;
+}
+
+.customToggle {
+  border: none;
+  outline: none;
+  padding-left:35px;
+  color:#7e5bec !important;
+  font-size: 38px;
+}
+
+.customToggle button.navbar-toggler {
+  color: white !important; 
+}
+
 .navLink {
-  font-size: 25px;
-  color: rgba(255, 255, 255, 0.8); 
-  border: 1px solid rgba(255, 255, 255, 0.08); 
-  padding: 10px 5px;
-  margin-right: 10px;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: border-color 0.3s ease, color 0.3s ease;
-
-  &:hover {
-    border-color: rgba(255, 255, 255, 0.8); 
-    color: #ffffff; 
-  }
-}
-.navDropdown {
-  font-size: 25px;
-  color: rgba(255, 255, 255, 0.8) !important; 
-  border: 1px solid rgba(255, 255, 255, 0.08); 
-  padding: 5px 5px;
-  margin-right: 10px;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: border-color 0.3s ease, color 0.3s ease;
-
-  &:hover {
-    border-color: rgba(255, 255, 255, 0.8); 
-    color: #ffffff !important; 
-  }
+  font-size: 24px; 
+  margin-bottom: 10px;
+  color: #2b8ded;
 }
 
-.headerNavRight {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    margin-right: 38px;
-    flex: 1;
+.navDropdown .dropdown-item {
+  font-size: 24px; 
+  margin-bottom: 10px; 
+}
+
+.offCanvas {
+ background-color: rgb(253, 253, 253, 0.98);
+}
+
+.offcanvasTitle {
+  font-size: 40px;
+  color: #2b8ded;
+  text-shadow: #2b8ded;
 }
