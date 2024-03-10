@@ -54,8 +54,6 @@ export function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Navigate replace to="/login" />} />
         <Route path="/files/*" element={<div className={styles.loginBackground}><FilesDisplayWithHeader files={files} /></div>} />
-        <Route path='/download' Component={DownloadPage} />
-        <Route path='/upload' Component={uploadPage} />
         <Route path='/approvals' Component={approvalsPage} />
         <Route path='/group' Component={groupPage} />
         <Route path='/change-operator' Component={operatorPage} />
