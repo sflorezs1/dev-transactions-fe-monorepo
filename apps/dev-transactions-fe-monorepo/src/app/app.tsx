@@ -11,6 +11,12 @@ import Chance from 'chance';
 import { File } from '@dev-transactions-fe-monorepo/libs/files';
 import styles from './app.module.scss';
 import Header from './header';
+import approvalsPage from './approvals-component/approvalsPage';
+import groupPage from './group-component/groupPage';
+import operatorPage from './change-operator-component/operatorPage';
+import docPage from './request-doc-component/docPage';
+import authenticatePage from './authenticate-doc-component/authenticatePage';
+import universityPage from './university-component/universityPage';
 
 const chance = new Chance();
 
@@ -46,6 +52,13 @@ export function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Navigate replace to="/login" />} />
         <Route path="/files/*" element={<div className={styles.loginBackground}><FilesDisplayWithHeader files={files} /></div>} />
+        <Route path='/approvals' Component={approvalsPage} />
+        <Route path='/group' Component={groupPage} />
+        <Route path='/change-operator' Component={operatorPage} />
+        <Route path='/request-document' Component={docPage} />
+        <Route path='/authenticate-document' Component={authenticatePage} />
+        <Route path='/university-document' Component={universityPage} />
+
       </Routes>
     </Router>
   );
