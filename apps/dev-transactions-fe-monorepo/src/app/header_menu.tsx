@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { Navbar, Offcanvas, Nav, NavDropdown, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { FaDownload, FaUpload } from 'react-icons/fa';
-import styles from './app.module.scss';
 import Logo from './login/devtran-logo.ico';
-import DownloadPopup from './downloadPopup';
-import UploadPopup from './uploadPopup';
+import styles from './files.module.scss'
 
 const Header = () => {
   const [show, setShow] = useState(false);
@@ -32,18 +29,7 @@ const Header = () => {
           </Navbar.Brand>
           <Navbar.Brand href="/files" className={styles.title}>DevTransactions</Navbar.Brand>
         </div>
-        <div className="ml-auto"> 
-        <Button variant="light" className={styles.buttonDownload} onClick={handleDownloadClick}>
-          <FaDownload /> Download
-        </Button>
-        <Button variant="light" className= {styles.buttonUpload} onClick={handleUploadClick}>
-          <FaUpload /> Upload
-        </Button>
-        </div>
       </Navbar>
-      {showDownloadPopup && <DownloadPopup handleClose={handleCloseDownloadPopup} />}
-      {showUploadPopup && <UploadPopup handleClose={handleCloseUploadPopup} />}
-
       <Offcanvas show={show} onHide={handleClose} placement='start' className={styles.offCanvas }>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title className={styles.offcanvasTitle}>Functionalities</Offcanvas.Title>
