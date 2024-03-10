@@ -11,8 +11,6 @@ import Chance from 'chance';
 import { File } from '@dev-transactions-fe-monorepo/libs/files';
 import styles from './app.module.scss';
 import Header from './header';
-import DownloadPage from './download-component/downloadPage';
-import uploadPage from './upload-component/uploadPage';
 import approvalsPage from './approvals-component/approvalsPage';
 import groupPage from './group-component/groupPage';
 import operatorPage from './change-operator-component/operatorPage';
