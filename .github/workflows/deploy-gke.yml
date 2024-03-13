@@ -18,11 +18,11 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GAR_LOCATION: us-central1 # TODO: update region of the Artifact Registry
-  GKE_CLUSTER: devtrasctions-cluster-fe    # TODO: update to cluster name
-  GKE_ZONE: us-central1-a   # TODO: update to cluster zone
-  DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
-  REPOSITORY: samples # TODO: update to Artifact Registry docker repository
+  GAR_LOCATION: us-central1
+  GKE_CLUSTER: devtrasctions-cluster-fe
+  GKE_ZONE: us-central1-a
+  DEPLOYMENT_NAME: gke-test
+  REPOSITORY: samples
   IMAGE: static-site
   GAR: us-central1-docker.pkg.dev/sound-machine-399502/devtrasactions-artifacts
 
@@ -57,7 +57,7 @@ jobs:
    
     # Get the GKE credentials so we can deploy to the cluster
     - name: Set up GKE credentials
-      uses: google-github-actions/get-gke-credentials@v0
+      uses: google-github-actions/get-gke-credentials@v2.1.0
       with:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
