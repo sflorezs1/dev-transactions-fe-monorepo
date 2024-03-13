@@ -45,10 +45,12 @@ jobs:
       uses: 'google-github-actions/auth@v2.1.2'
       with:
         credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+    - name: Check config
+      run: cat gha-creds-*.json
 
     - name: Docker configuration
       run: |-
-        cat gha-creds-*.json | docker login -u oauth2accesstoken --password-stdin https://$GAR_LOCATION-docker.pkg.dev
+        docker login -u oauth2accesstoken --password-stdin https://$GAR_LOCATION-docker.pkg.dev
    
     # Get the GKE credentials so we can deploy to the cluster
     - name: Set up GKE credentials
