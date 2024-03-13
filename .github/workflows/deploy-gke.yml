@@ -60,18 +60,28 @@ jobs:
       with:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_REGION }}
+
+
+    - name: Install
+      run: |
+        npm ci
+        
+    - name: Build apps
+      run: |
+        npx nx run-many --target=build --all
+
+    - name: List build artifacts
+      run: |
+        ls -la ./dist/apps/
+
         
    # Build and Publish Docker Images
     - name: Build and Publish
       run: |
-        npm ci
-        npx nx run-many --target=build --all
         for app in $(ls apps/); do
           echo "Generating Dockerfile for: $app"
           dockerfile_path="apps/$app/Dockerfile"  # Path to Dockerfile
-          echo '# Use a lightweight Node.js image for production' > $dockerfile_path
           echo 'FROM nginx:alpine' >> $dockerfile_path
-          echo '# Copy the built application from the builder stage' >> $dockerfile_path
           echo "COPY ./dist/apps/$app /usr/share/nginx/html" >> $dockerfile_path 
           echo "EXPOSE 80" >> $dockerfile_path
           echo 'CMD ["nginx", "-g", "daemon off;"]' >> $dockerfile_path
