@@ -70,13 +70,14 @@ jobs:
           echo "Generating Dockerfile for: $app"
           dockerfile_path="apps/$app/Dockerfile"  # Path to Dockerfile
           echo '# Use a lightweight Node.js image for production' > $dockerfile_path
+          echo 'FROM nginx:alpine' >> $dockerfile_path
           echo '# Copy the built application from the builder stage' >> $dockerfile_path
           echo "COPY ./dist/apps/$app /usr/share/nginx/html" >> $dockerfile_path 
           echo "EXPOSE 80" >> $dockerfile_path
           echo 'CMD ["nginx", "-g", "daemon off;"]' >> $dockerfile_path
 
           echo "Building and pushing image for: $app"
-          docker build --tag "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$app:$GITHUB_SHA" --build-arg GITHUB_SHA="$GITHUB_SHA" --build-arg GITHUB_REF="$GITHUB_REF" apps/$app  # Build from the microservice subdirectory
+          docker build --tag "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$app:$GITHUB_SHA" --build-arg GITHUB_SHA="$GITHUB_SHA" --build-arg GITHUB_REF="$GITHUB_REF" apps/$app 
           docker push "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$app:$GITHUB_SHA"
         done
     # Set up kustomize
