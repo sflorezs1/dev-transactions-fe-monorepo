@@ -45,8 +45,6 @@ jobs:
       uses: 'google-github-actions/auth@v2.1.2'
       with:
         credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
-    - name: Check config
-      run: cat gha-creds-*.json
 
     - name: Log in to Google Container Registry
       uses: docker/login-action@v1
@@ -61,7 +59,7 @@ jobs:
       with:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
-
+        
    # Build and Publish Docker Images
     - name: Build and Publish
       run: |
