@@ -24,6 +24,7 @@ env:
   DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
   REPOSITORY: samples # TODO: update to Artifact Registry docker repository
   IMAGE: static-site
+  GAR: us-central1-docker.pkg.dev/sound-machine-399502/devtrasactions-artifacts
 
 jobs:
   setup-build-publish-deploy:
@@ -41,7 +42,7 @@ jobs:
 
     # Alternative option - authentication via credentials json
     - id: 'auth'
-      uses: 'google-github-actions/auth@v0'
+      uses: 'google-github-actions/auth@v2.1.2'
       with:
         credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
@@ -51,7 +52,7 @@ jobs:
       uses: docker/login-action@v3.0.0
       with:
         # Server address of Docker registry. If not set then will default to Docker Hub
-        registry: $GAR_LOCATION
+        registry: $GAR
         # Username used to log against the Docker registry
         username: "oauth2accesstoken"
         # Password or personal access token used to log against the Docker registry
@@ -95,7 +96,7 @@ jobs:
         for app in $(ls apps/); do
           echo "Deploying $app"
           # Update image tag in deployment manifests
-          ./kustomize edit set image LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/$app:TAG=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$app:$GITHUB_SHA 
+          ./kustomize edit set image LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$app:TAG=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$app:$GITHUB_SHA 
           ./kustomize build apps/$app | kubectl apply -f -
           kubectl rollout status deployment/$app  # Assuming deployments named after microservices 
         done 
