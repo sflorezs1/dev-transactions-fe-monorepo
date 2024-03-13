@@ -119,6 +119,11 @@ jobs:
                 - containerPort: 80
         EOF
         done
+    - name: Verify manifiest
+      run: |
+        for app in $(ls apps); do
+          cat apps/$app/k8s/deployment.yml
+        done
 
     - name: Deploy
       run: |
