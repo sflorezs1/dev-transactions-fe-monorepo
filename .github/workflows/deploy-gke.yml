@@ -90,18 +90,46 @@ jobs:
           docker build --tag "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$app:$GITHUB_SHA" --build-arg GITHUB_SHA="$GITHUB_SHA" --build-arg GITHUB_REF="$GITHUB_REF" --file apps/$app/Dockerfile .
           docker push "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$app:$GITHUB_SHA"
         done
-    # Set up kustomize
-    - name: Set up Kustomize
-      run: |-
-        curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
-        chmod u+x ./kustomize
-    # Deploy the Docker image to the GKE cluster
+  
+    - name: Generate Kubernetes Deployment Manifests
+      run: |
+        for app in $(ls apps/); do
+          mkdir -p apps/$app/k8s
+          cat <<EOF > apps/$app/k8s/deployment.yaml
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: $app-deployment
+          labels:
+            app: $app
+        spec:
+          replicas: 3
+          selector:
+            matchLabels:
+              app: $app
+          template:
+            metadata:
+              labels:
+                app: $app
+            spec:
+              containers:
+              - name: $app-container
+                image: IMAGE_URL_PLACEHOLDER  # This placeholder will be replaced
+                ports:
+                - containerPort: 80
+        EOF
+        done
+
     - name: Deploy
       run: |
         for app in $(ls apps/); do
-          echo "Deploying $app"
-          # Update image tag in deployment manifests
-          ./kustomize edit set image LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$app:TAG=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$app:$GITHUB_SHA 
-          ./kustomize build apps/$app | kubectl apply -f -
-          kubectl rollout status deployment/$app  # Assuming deployments named after microservices 
-        done 
+          # Replace the image URL placeholder with the actual image URL constructed from the build and publish steps
+          image_url="us-central1-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/$app:${{ github.sha }}"
+          sed -i "s|IMAGE_URL_PLACEHOLDER|$image_url|g" apps/$app/k8s/deployment.yaml
+          
+          # Apply the Kubernetes manifests
+          kubectl apply -f apps/$app/k8s/deployment.yaml
+          # Wait for the deployment to be fully rolled out
+          kubectl rollout status deployment/$app-deployment
+        done
+
