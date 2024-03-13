@@ -111,6 +111,7 @@ jobs:
           echo "      labels:" >> apps/$app/k8s/deployment.yaml
           echo "        app: $app" >> apps/$app/k8s/deployment.yaml
           echo "    spec:" >> apps/$app/k8s/deployment.yaml
+          echo "      serviceAccountName: gar.access" >> apps/$app/k8s/deployment.yaml
           echo "      containers:" >> apps/$app/k8s/deployment.yaml
           echo "      - name: $app-container" >> apps/$app/k8s/deployment.yaml
           echo "        image: IMAGE_URL_PLACEHOLDER  # This placeholder will be replaced" >> apps/$app/k8s/deployment.yaml
