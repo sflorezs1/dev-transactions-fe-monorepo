@@ -23,7 +23,7 @@ env:
   GKE_ZONE: us-central1-c
   GKE_REGION: us-central1
   DEPLOYMENT_NAME: gke-test
-  REPOSITORY: samples
+  REPOSITORY: devtrasactions-artifacts
   IMAGE: static-site
   GAR: us-central1-docker.pkg.dev/sound-machine-399502/devtrasactions-artifacts
 
