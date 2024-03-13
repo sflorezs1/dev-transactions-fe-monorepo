@@ -64,6 +64,7 @@ jobs:
    # Build and Publish Docker Images
     - name: Build and Publish
       run: |
+        npm ci
         npx nx run-many --target=build --all
         for app in $(ls apps/); do
           echo "Generating Dockerfile for: $app"
