@@ -95,30 +95,29 @@ jobs:
       run: |
         for app in $(ls apps/); do
           mkdir -p apps/$app/k8s
-          cat <<EOF > apps/$app/k8s/deployment.yaml
-        apiVersion: apps/v1
-        kind: Deployment
-        metadata:
-          name: $app-deployment
-          labels:
-            app: $app
-        spec:
-          replicas: 3
-          selector:
-            matchLabels:
-              app: $app
-          template:
-            metadata:
-              labels:
-                app: $app
-            spec:
-              containers:
-              - name: $app-container
-                image: IMAGE_URL_PLACEHOLDER  # This placeholder will be replaced
-                ports:
-                - containerPort: 80
-        EOF
+          echo "apiVersion: apps/v1" > apps/$app/k8s/deployment.yaml
+          echo "kind: Deployment" >> apps/$app/k8s/deployment.yaml
+          echo "metadata:" >> apps/$app/k8s/deployment.yaml
+          echo "  name: $app-deployment" >> apps/$app/k8s/deployment.yaml
+          echo "  labels:" >> apps/$app/k8s/deployment.yaml
+          echo "    app: $app" >> apps/$app/k8s/deployment.yaml
+          echo "spec:" >> apps/$app/k8s/deployment.yaml
+          echo "  replicas: 3" >> apps/$app/k8s/deployment.yaml
+          echo "  selector:" >> apps/$app/k8s/deployment.yaml
+          echo "    matchLabels:" >> apps/$app/k8s/deployment.yaml
+          echo "      app: $app" >> apps/$app/k8s/deployment.yaml
+          echo "  template:" >> apps/$app/k8s/deployment.yaml
+          echo "    metadata:" >> apps/$app/k8s/deployment.yaml
+          echo "      labels:" >> apps/$app/k8s/deployment.yaml
+          echo "        app: $app" >> apps/$app/k8s/deployment.yaml
+          echo "    spec:" >> apps/$app/k8s/deployment.yaml
+          echo "      containers:" >> apps/$app/k8s/deployment.yaml
+          echo "      - name: $app-container" >> apps/$app/k8s/deployment.yaml
+          echo "        image: IMAGE_URL_PLACEHOLDER  # This placeholder will be replaced" >> apps/$app/k8s/deployment.yaml
+          echo "        ports:" >> apps/$app/k8s/deployment.yaml
+          echo "        - containerPort: 80" >> apps/$app/k8s/deployment.yaml
         done
+
     - name: Verify manifiest
       run: |
         for app in $(ls apps); do
