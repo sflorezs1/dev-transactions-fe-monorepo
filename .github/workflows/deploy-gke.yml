@@ -58,7 +58,7 @@ jobs:
       uses: google-github-actions/get-gke-credentials@v2.1.0
       with:
         cluster_name: ${{ env.GKE_CLUSTER }}
-        region: ${{ env.GAR_LOCATION }}
+        location: ${{ env.GKE_ZONE }}
         
    # Build and Publish Docker Images
     - name: Build and Publish
