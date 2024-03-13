@@ -53,7 +53,7 @@ jobs:
         # Server address of Docker registry. If not set then will default to Docker Hub
         registry: $GAR_LOCATION
         # Username used to log against the Docker registry
-        username: oauth2accesstoken
+        username: "oauth2accesstoken"
         # Password or personal access token used to log against the Docker registry
         password: ${{steps.auth.outputs.access_token}}
    
