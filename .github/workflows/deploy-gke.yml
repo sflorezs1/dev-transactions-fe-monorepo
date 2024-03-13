@@ -48,9 +48,12 @@ jobs:
     - name: Check config
       run: cat gha-creds-*.json
 
-    - name: Docker configuration
-      run: |-
-        docker login -u oauth2accesstoken --password-stdin https://$GAR_LOCATION-docker.pkg.dev
+    - name: Log in to Google Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ${{ GAR }}
+        username: _json_key
+        password: ${{ secrets.GCP_CREDENTIALS.private_key }} 
    
     # Get the GKE credentials so we can deploy to the cluster
     - name: Set up GKE credentials
