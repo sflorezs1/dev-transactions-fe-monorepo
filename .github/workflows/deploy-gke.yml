@@ -20,7 +20,7 @@ env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GAR_LOCATION: us-central1
   GKE_CLUSTER: devtrasctions-cluster-fe
-  GKE_ZONE: us-central1-a
+  GKE_ZONE: us-central1-c
   DEPLOYMENT_NAME: gke-test
   REPOSITORY: samples
   IMAGE: static-site
@@ -58,7 +58,7 @@ jobs:
       uses: google-github-actions/get-gke-credentials@v2.1.0
       with:
         cluster_name: ${{ env.GKE_CLUSTER }}
-        location: ${{ env.GKE_ZONE }}
+        region: ${{ env.GAR_LOCATION }}
         
    # Build and Publish Docker Images
     - name: Build and Publish
