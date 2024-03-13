@@ -53,7 +53,7 @@ jobs:
       with:
         registry: ${{ env.GAR }}
         username: _json_key
-        password: ${{ secrets.GCP_SA_KEY }} 
+        password: ${{ secrets.GCP_CREDENTIALS }} 
    
     # Get the GKE credentials so we can deploy to the cluster
     - name: Set up GKE credentials
