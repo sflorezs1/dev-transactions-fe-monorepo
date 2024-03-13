@@ -121,7 +121,7 @@ jobs:
     - name: Verify manifiest
       run: |
         for app in $(ls apps); do
-          cat apps/$app/k8s/deployment.yml
+          ls apps/$app/k8s
         done
 
     - name: Deploy
