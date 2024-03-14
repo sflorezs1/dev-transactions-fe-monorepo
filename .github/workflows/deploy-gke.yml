@@ -94,48 +94,42 @@ jobs:
     - name: Generate Kubernetes Deployment Manifests
       run: |
         for app in $(ls apps/); do
-          mkdir -p apps/$app/k8s
-          echo "apiVersion: apps/v1" > apps/$app/k8s/deployment.yaml
-          echo "kind: Deployment" >> apps/$app/k8s/deployment.yaml
-          echo "metadata:" >> apps/$app/k8s/deployment.yaml
-          echo "  name: $app-deployment" >> apps/$app/k8s/deployment.yaml
-          echo "  labels:" >> apps/$app/k8s/deployment.yaml
-          echo "    app: $app" >> apps/$app/k8s/deployment.yaml
-          echo "spec:" >> apps/$app/k8s/deployment.yaml
-          echo "  replicas: 3" >> apps/$app/k8s/deployment.yaml
-          echo "  selector:" >> apps/$app/k8s/deployment.yaml
-          echo "    matchLabels:" >> apps/$app/k8s/deployment.yaml
-          echo "      app: $app" >> apps/$app/k8s/deployment.yaml
-          echo "  template:" >> apps/$app/k8s/deployment.yaml
-          echo "    metadata:" >> apps/$app/k8s/deployment.yaml
-          echo "      labels:" >> apps/$app/k8s/deployment.yaml
-          echo "        app: $app" >> apps/$app/k8s/deployment.yaml
-          echo "    spec:" >> apps/$app/k8s/deployment.yaml
-          echo "      serviceAccountName: terraform-user" >> apps/$app/k8s/deployment.yaml
-          echo "      containers:" >> apps/$app/k8s/deployment.yaml
-          echo "      - name: $app-container" >> apps/$app/k8s/deployment.yaml
-          echo "        image: IMAGE_URL_PLACEHOLDER  # This placeholder will be replaced" >> apps/$app/k8s/deployment.yaml
-          echo "        ports:" >> apps/$app/k8s/deployment.yaml
-          echo "        - containerPort: 80" >> apps/$app/k8s/deployment.yaml
+          k8s_path="apps/$app/k8s"
+          mkdir -p $k8s_path
+          image_url="$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$app:$GITHUB_SHA"
+          cat <<EOF > $k8s_path/deployment.yaml
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: $app-deployment
+            labels:
+              app: $app
+          spec:
+            replicas: 3
+            selector:
+              matchLabels:
+                app: $app
+            template:
+              metadata:
+                labels:
+                  app: $app
+              spec:
+                serviceAccountName: terraform-user
+                imagePullSecrets:
+                - name: gcr-json-key
+                containers:
+                - name: $app-container
+                  image: $image_url
+                  ports:
+                  - containerPort: 80
+          EOF
         done
 
-    - name: Verify manifiest
-      run: |
-        for app in $(ls apps); do
-          ls apps/$app/k8s
-        done
-
-    - name: Deploy
+    - name: Deploy to GKE
       run: |
         for app in $(ls apps/); do
-          # Replace the image URL placeholder with the actual image URL constructed from the build and publish steps
-          image_url="us-central1-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/$app:${{ github.sha }}"
-          echo "IMAGE_URL=$image_url"
-          sed -i "s|IMAGE_URL_PLACEHOLDER|$image_url|g" apps/$app/k8s/deployment.yaml
-          
-          # Apply the Kubernetes manifests
-          kubectl apply -f apps/$app/k8s/deployment.yaml
-          # Wait for the deployment to be fully rolled out
+          k8s_path="apps/$app/k8s"
+          kubectl apply -f $k8s_path/deployment.yaml
           kubectl rollout status deployment/$app-deployment
         done
 
