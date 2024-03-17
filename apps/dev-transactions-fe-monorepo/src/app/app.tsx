@@ -17,6 +17,7 @@ import operatorPage from './change-operator-component/operatorPage';
 import docPage from './request-doc-component/docPage';
 import authenticatePage from './authenticate-doc-component/authenticatePage';
 import universityPage from './university-component/universityPage';
+import registerPage from './register-component/registerPage'
 
 const chance = new Chance();
 
@@ -58,7 +59,7 @@ export function App() {
         <Route path='/request-document' Component={docPage} />
         <Route path='/authenticate-document' Component={authenticatePage} />
         <Route path='/university-document' Component={universityPage} />
-
+        <Route path='/register' Component={registerPage} />
       </Routes>
     </Router>
   );

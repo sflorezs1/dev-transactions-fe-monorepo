@@ -3,12 +3,13 @@ import styles from './login.module.scss';
 
 const RegistrationPopup = ({ handleClose }) => {
   const [name, setName] = useState('');
-  const [creditCard, setCreditCard] = useState('');
+  const [identification, setId] = useState('');
   const [address, setAddress] = useState('');
+  const [email, setEmail] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(name, creditCard, address);
+    console.log(name, identification, address);
     handleClose(); // Close the popup after submitting
   };
 
@@ -21,7 +22,7 @@ const RegistrationPopup = ({ handleClose }) => {
             <div className={styles.inputGroup}>
               <input
                 type="text"
-                placeholder="Nombre"
+                placeholder="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -29,17 +30,25 @@ const RegistrationPopup = ({ handleClose }) => {
             <div className={styles.inputGroup}>
               <input
                 type="number"
-                placeholder="Identifiación"
-                value={creditCard}
-                onChange={(e) => setCreditCard(e.target.value)}
+                placeholder="Identification"
+                value={identification}
+                onChange={(e) => setId(e.target.value)}
               />
             </div>
             <div className={styles.inputGroup}>
               <input
                 type="text"
-                placeholder="Dirección"
+                placeholder="Addess"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <input
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
           </div>
