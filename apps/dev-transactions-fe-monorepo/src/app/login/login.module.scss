@@ -186,14 +186,14 @@ body {
 
 .registrationContent {
   background-color: #fefefe;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 10px 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .close {
   position: absolute;
-  top: 10px;
+  top: 2px;
   right: 10px;
   cursor: pointer;
 }
@@ -210,10 +210,10 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 
-  padding: 2rem;
+  padding: 0.8rem;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 25rem; 
-  max-width: 100%;
+  max-width: 80%;
   box-sizing: border-box;
 }
