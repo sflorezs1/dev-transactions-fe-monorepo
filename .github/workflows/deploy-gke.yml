@@ -86,6 +86,7 @@ jobs:
         for app in $(ls apps/); do
           mkdir -p apps/$app/k8s
           {
+            echo "---"
             echo "apiVersion: apps/v1"
             echo "kind: Deployment"
             echo "metadata:"
@@ -107,14 +108,23 @@ jobs:
             echo "      - name: $app-container"
             echo "        image: IMAGE_URL_PLACEHOLDER  # This placeholder will be replaced"
             echo "        ports:"
-            echo "        - containerPort: 89"
-          } >> apps/$app/k8s/deployment.yaml
+            echo "        - containerPort: 80
+            echo '        command: ["/bin/sh", "-c"]' 
+            echo '        args: ["find /usr/share/nginx/html -type f -exec bash -c '\''for var in $(printenv | grep "^VITE"); do name=${var%%=*}; value=${var#*=}; sed -i "s|$name|$value|g" $1; done'\'' _ {} \;"]'
+            echo "---"
+            echo "apiVersion: v1"
+            echo "kind: Service"
+            echo "metadata:"
+            echo "  name: $app-deployment"
+            echo "spec:"
+            echo "  type: LoadBalancer"
+            echo "  selector:"
+            echo "    app: $app-deployment"
+            echo "  ports:"
+            echo "    - protocol: TCP"
+            echo "      port: 80"
+            } >> apps/$app/k8s/deployment.yaml
           cat apps/$app/k8s/deployment.yaml
-        done
-    - name: Verify manifiest
-      run: |
-        for app in $(ls apps); do
-          ls apps/$app/k8s
         done
     - name: Deploy
       run: |

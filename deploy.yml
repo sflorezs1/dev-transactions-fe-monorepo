@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-fe-deployment
+  labels:
+    app: user-fe
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: user-fe
+  template:
+    metadata:
+      labels:
+        app: user-fe
+    spec:
+      serviceAccountName: terraform-user
+      containers:
+      - name: user-fe-container
+        image: IMAGE_URL_PLACEHOLDER  # This placeholder will be replaced
+        ports:
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-fe-deployment
+  labels:
+    app: user-fe
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: user-fe
+  template:
+    metadata:
+      labels:
+        app: user-fe
+    spec:
+      serviceAccountName: terraform-user
+      containers:
+      - name: user-fe-container
+        image: IMAGE_URL_PLACEHOLDER  # This placeholder will be replaced
+        ports:
+        - containerPort: 80
+        command: ["/bin/sh", "-c"]
+        args: ["find /usr/share/nginx/html -type f -exec bash -c 'for var in $(printenv | grep "^VITE"); do name=${var%%=*}; value=${var#*=}; sed -i "s|$name|$value|g" $1; done' _ {} \;"]

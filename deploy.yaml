@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-fe-deployment
+  labels:
+    app: user-fe
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: user-fe
+  template:
+    metadata:
+      labels:
+        app: user-fe
+    spec:
+      serviceAccountName: terraform-user
+      containers:
+      - name: user-fe-container
+        image: IMAGE_URL_PLACEHOLDER  # This placeholder will be replaced
+        ports:
