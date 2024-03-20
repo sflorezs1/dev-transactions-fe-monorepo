@@ -1,7 +1,7 @@
 {
-  "name": "user_fe",
+  "name": "user-fe",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/user_fe/src",
+  "sourceRoot": "apps/user-fe/src",
   "projectType": "application",
   "targets": {},
   "tags": []
