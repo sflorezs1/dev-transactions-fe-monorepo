@@ -69,10 +69,13 @@ jobs:
         for app in $(ls apps/); do
           echo "Generating Dockerfile for: $app"
           dockerfile_path="apps/$app/Dockerfile"  # Path to Dockerfile
-          echo 'FROM nginx:alpine' >> $dockerfile_path
-          echo "COPY ./dist/apps/$app /usr/share/nginx/html" >> $dockerfile_path 
-          echo "EXPOSE 80" >> $dockerfile_path
-          echo 'CMD ["nginx", "-g", "daemon off;"]' >> $dockerfile_path
+          {
+            echo 'FROM nginx:alpine'
+            echo "COPY ./default.conf /etc/nginx/conf.d/default.conf"
+            echo "COPY ./dist/apps/$app /usr/share/nginx/html"
+            echo "EXPOSE 80"
+            echo 'CMD ["nginx", "-g", "daemon off;"]'
+          } >> $dockerfile_path
           echo "Building and pushing image for: $app"
           docker build --tag "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$app:$GITHUB_SHA" --build-arg GITHUB_SHA="$GITHUB_SHA" --build-arg GITHUB_REF="$GITHUB_REF" --file apps/$app/Dockerfile .
           docker push "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$app:$GITHUB_SHA"
@@ -90,7 +93,7 @@ jobs:
             echo "  labels:"
             echo "    app: $app"
             echo "spec:"
-            echo "  replicas: 3"
+            echo "  replicas: 2"
             echo "  selector:"
             echo "    matchLabels:"
             echo "      app: $app"
@@ -104,7 +107,8 @@ jobs:
             echo "      - name: $app-container"
             echo "        image: IMAGE_URL_PLACEHOLDER  # This placeholder will be replaced"
             echo "        ports:"
-            echo "        - containerPort: 80" 
+            echo "        command: ["/bin/sh", "-c"]" 
+            echo "        args: [\"for var in \$(printenv | grep ^VITE | cut -d= -f1); do find /usr/share/nginx/html -type f -exec sed -i \\\"s/\$$var/\${!var}/g\\\" {} \\;; done\"]"
           } >> apps/$app/k8s/deployment.yaml
         done
     - name: Verify manifiest
