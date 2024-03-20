@@ -113,6 +113,10 @@ jobs:
             echo "        env:"
             echo "        - name: VITE_USER_BRIDGE_URL"
             echo "          value: http://$ambassador_ip:80/user-bridge" 
+            echo "        - name: VITE_DOCUMENT_BRIDGE_URL"
+            echo "          value: http://$ambassador_ip:80/document-bridge" 
+            echo "        - name: VITE_REQUEST_BRIDGE_URL"
+            echo "          value: http://$ambassador_ip:80/request-bridge" 
             echo '        command: ["/bin/sh", "-c"]' 
             echo '        args:'
             echo '          - find /usr/share/nginx/html -type f -exec sh -c '\''for var in $(printenv | grep "^VITE"); do name=${var%%=*}; value=${var#*=}; sed -i "s|$name|$value|g" $1; done'\'' _ {} \; && nginx -g "daemon off;"'
@@ -124,7 +128,7 @@ jobs:
             echo "spec:"
             echo "  type: LoadBalancer"
             echo "  selector:"
-            echo "    app: $app-deployment"
+            echo "    app: $app"
             echo "  ports:"
             echo "    - protocol: TCP"
             echo "      port: 80"
