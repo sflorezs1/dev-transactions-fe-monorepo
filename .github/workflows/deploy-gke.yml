@@ -128,6 +128,7 @@ jobs:
             echo "  ports:"
             echo "    - protocol: TCP"
             echo "      port: 80"
+            echo "      targetPort: 80"
             } >> apps/$app/k8s/deployment.yaml
           cat apps/$app/k8s/deployment.yaml
         done
