@@ -108,7 +108,7 @@ jobs:
             echo "        image: IMAGE_URL_PLACEHOLDER  # This placeholder will be replaced"
             echo "        ports:"
             echo "        command: ["/bin/sh", "-c"]" 
-            echo "        args: [\"for var in \$(printenv | grep ^VITE | cut -d= -f1); do find /usr/share/nginx/html -type f -exec sed -i \\\"s/\$$var/\${!var}/g\\\" {} \\;; done\"]"
+            echo "        args: [\"for var in \\\$(printenv | grep ^VITE | cut -d= -f1); do find /usr/share/nginx/html -type f -exec sed -i \\\\\\\"s/\\$$var/\\${!var}/g\\\\\\\" {} \\;; done\"]"
           } >> apps/$app/k8s/deployment.yaml
         done
     - name: Verify manifiest
