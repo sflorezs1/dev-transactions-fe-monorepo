@@ -111,7 +111,7 @@ jobs:
             echo "        - containerPort: 80"
             echo '        command: ["/bin/sh", "-c"]' 
             echo '        args:'
-            echo '          - find /usr/share/nginx/html -type f -exec bash -c '\''for var in $(printenv | grep "^VITE"); do name=${var%%=*}; value=${var#*=}; sed -i "s|$name|$value|g" $1; done'\'' _ {} \;'
+            echo '          - find /usr/share/nginx/html -type f -exec sh -c '\''for var in $(printenv | grep "^VITE"); do name=${var%%=*}; value=${var#*=}; sed -i "s|$name|$value|g" $1; done'\'' _ {} \;'
             echo "---"
             echo "apiVersion: v1"
             echo "kind: Service"
