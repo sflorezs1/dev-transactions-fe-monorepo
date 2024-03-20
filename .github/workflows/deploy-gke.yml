@@ -115,7 +115,7 @@ jobs:
             echo "          value: http://$ambassador_ip:80/user-bridge" 
             echo '        command: ["/bin/sh", "-c"]' 
             echo '        args:'
-            echo '          - find /usr/share/nginx/html -type f -exec sh -c '\''for var in $(printenv | grep "^VITE"); do name=${var%%=*}; value=${var#*=}; sed -i "s|$name|$value|g" $1; done'\'' _ {} \;' && nginx -g daemon off;
+            echo '          - find /usr/share/nginx/html -type f -exec sh -c \'for var in $(printenv | grep "^VITE"); do name=${var%%=*}; value=${var#*=}; sed -i "s|$name|$value|g" $1; done\' _ {} \; && nginx -g daemon off;'
             echo "---"
             echo "apiVersion: v1"
             echo "kind: Service"
