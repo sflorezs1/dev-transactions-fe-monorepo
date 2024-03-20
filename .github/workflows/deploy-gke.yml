@@ -83,6 +83,7 @@ jobs:
   
     - name: Generate Kubernetes Deployment Manifests
       run: |
+        ambassador_ip=$(kubectl get service ambassador --namespace default -o=jsonpath='{.status.loadBalancer.ingress[0].ip}')
         for app in $(ls apps/); do
           mkdir -p apps/$app/k8s
           {
@@ -109,9 +110,12 @@ jobs:
             echo "        image: IMAGE_URL_PLACEHOLDER  # This placeholder will be replaced"
             echo "        ports:"
             echo "        - containerPort: 80"
+            echo "        env:"
+            echo "        - name: VITE_USER_BRIDGE_URL"
+            echo "          value: http://$ambassador_ip:80/user-bridge" 
             echo '        command: ["/bin/sh", "-c"]' 
             echo '        args:'
-            echo '          - find /usr/share/nginx/html -type f -exec sh -c '\''for var in $(printenv | grep "^VITE"); do name=${var%%=*}; value=${var#*=}; sed -i "s|$name|$value|g" $1; done'\'' _ {} \;'
+            echo '          - find /usr/share/nginx/html -type f -exec sh -c '\''for var in $(printenv | grep "^VITE"); do name=${var%%=*}; value=${var#*=}; sed -i "s|$name|$value|g" $1; done'\'' _ {} \; nginx -g daemon off;'
             echo "---"
             echo "apiVersion: v1"
             echo "kind: Service"
