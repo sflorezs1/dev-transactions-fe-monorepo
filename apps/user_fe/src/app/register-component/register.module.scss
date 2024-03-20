@@ -23,6 +23,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px
   }
   
   
@@ -74,7 +78,6 @@
   }
   
   .changeButtonContainer{
-    background: #81a1c1;
     color: #ffffff;
     padding: 0.75rem 1rem;
     border: none;

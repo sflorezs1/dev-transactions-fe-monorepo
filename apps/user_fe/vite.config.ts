@@ -5,7 +5,7 @@ import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/apps/dev-transactions-fe-monorepo',
+  cacheDir: '../../node_modules/.vite/apps/user_fe',
 
   server: {
     port: 4200,
@@ -25,7 +25,7 @@ export default defineConfig({
   // },
 
   build: {
-    outDir: '../../dist/apps/dev-transactions-fe-monorepo',
+    outDir: '../../dist/apps/user_fe',
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,
@@ -42,7 +42,7 @@ export default defineConfig({
 
     reporters: ['default'],
     coverage: {
-      reportsDirectory: '../../coverage/apps/dev-transactions-fe-monorepo',
+      reportsDirectory: '../../coverage/apps/user_fe',
       provider: 'v8',
     },
   },

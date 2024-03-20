@@ -1,7 +1,7 @@
 {
-  "name": "dev-transactions-fe-monorepo",
+  "name": "user_fe",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/dev-transactions-fe-monorepo/src",
+  "sourceRoot": "apps/user_fe/src",
   "projectType": "application",
   "targets": {},
   "tags": []
