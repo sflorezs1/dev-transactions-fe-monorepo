@@ -38,7 +38,7 @@ const RegistrationPopup = ({ handleClose }) => {
             <div className={styles.inputGroup}>
               <input
                 type="text"
-                placeholder="Addess"
+                placeholder="Address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
               />
