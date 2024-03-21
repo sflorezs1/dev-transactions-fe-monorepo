@@ -111,11 +111,11 @@ jobs:
             echo "        - containerPort: 80"
             echo "        env:"
             echo "        - name: VITE_USER_BRIDGE_URL"
-            echo "          value: http://104.154.66.152:8000/user-bridge" 
+            echo "          value: http://104.154.66.152:8000" 
             echo "        - name: VITE_DOCUMENT_BRIDGE_URL"
-            echo "          value: http://104.197.243.53:8000/document-bridge" 
+            echo "          value: http://104.197.243.53:8000" 
             echo "        - name: VITE_REQUEST_BRIDGE_URL"
-            echo "          value: http://35.223.146.207:8000/request-bridge" 
+            echo "          value: http://35.223.146.207:8000" 
             echo '        command: ["/bin/sh", "-c"]' 
             echo '        args:'
             echo '          - find /usr/share/nginx/html -type f -exec sh -c '\''for var in $(printenv | grep "^VITE"); do name=${var%%=*}; value=${var#*=}; sed -i "s|$name|$value|g" $1; done'\'' _ {} \; && nginx -g "daemon off;"'
