@@ -36,14 +36,9 @@ const Header = () => {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Nav className="flex-column">
-            <NavDropdown title="Request" id="basic-nav-dropdown" className={styles.navLink}>
-              <NavDropdown.Item as={Link} to="/change-operator" className={styles.navLink}>Change Operator</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/request-document" className={styles.navLink}>Request document</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/authenticate-document" className={styles.navLink}>Authenticate document</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/university-document" className={styles.navLink}>University Document</NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link as={Link} to="/approvals" className={styles.navLink}>Approvals</Nav.Link>
-            <Nav.Link as={Link} to="/group" className={styles.navLink}>Group</Nav.Link>
+            <Nav.Link as={Link} to="/change-operator" className={styles.navLink}>Change Operator</Nav.Link>
+            <Nav.Link as={Link} to="/authenticate-document" className={styles.navLink}>Authenticate document</Nav.Link>
+            <Nav.Link as={Link} to="/files" className={styles.navLink}>Home</Nav.Link>
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>
