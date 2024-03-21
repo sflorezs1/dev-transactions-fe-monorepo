@@ -10,6 +10,20 @@ const RegistrationPopup = ({ handleClose }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(name, identification, address);
+    const response = await fetch(`${import.meta.env.VITE_USER_BRIDGE_URL}/user/start_register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name,
+        national_id: identification,
+        address,
+        email,
+      })
+    });
+    const data = await response.json();
+    alert(data.message);
     handleClose(); // Close the popup after submitting
   };
 
