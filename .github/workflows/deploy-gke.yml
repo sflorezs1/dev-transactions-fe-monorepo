@@ -83,7 +83,6 @@ jobs:
   
     - name: Generate Kubernetes Deployment Manifests
       run: |
-        ambassador_ip=$(kubectl get service edge-stack --namespace ambassador -o=jsonpath='{.status.loadBalancer.ingress[0].ip}')
         for app in $(ls apps/); do
           mkdir -p apps/$app/k8s
           {
