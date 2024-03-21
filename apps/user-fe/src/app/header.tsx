@@ -33,9 +33,6 @@ const Header = () => {
           <Navbar.Brand href="/files" className={styles.title}>DevTransactions</Navbar.Brand>
         </div>
         <div className="ml-auto"> 
-        <Button variant="light" className={styles.buttonDownload} onClick={handleDownloadClick}>
-          <FaDownload /> Download
-        </Button>
         <Button variant="light" className= {styles.buttonUpload} onClick={handleUploadClick}>
           <FaUpload /> Upload
         </Button>
@@ -50,14 +47,8 @@ const Header = () => {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Nav className="flex-column">
-            <NavDropdown title="Request" id="basic-nav-dropdown" className={styles.navLink}>
-              <NavDropdown.Item as={Link} to="/change-operator" className={styles.navLink}>Change Operator</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/request-document" className={styles.navLink}>Request document</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/authenticate-document" className={styles.navLink}>Authenticate document</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/university-document" className={styles.navLink}>University Document</NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link as={Link} to="/approvals" className={styles.navLink}>Approvals</Nav.Link>
-            <Nav.Link as={Link} to="/group" className={styles.navLink}>Group</Nav.Link>
+            <Nav.Link as={Link} to="/change-operator" className={styles.navLink}>Change Operator</Nav.Link>
+            <Nav.Link as={Link} to="/authenticate-document" className={styles.navLink}>Authenticate document</Nav.Link>
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>
