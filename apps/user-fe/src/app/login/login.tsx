@@ -7,10 +7,36 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPopup, setShowPopup] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(email, password);
+  
+    console.log(`${import.meta.env.VITE_USER_BRIDGE_URL + '/user/login'}`)
+    
+    try {
+      const response = await fetch(import.meta.env.VITE_USER_BRIDGE_URL + '/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+    
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+    
+        // Store the token in localStorage
+        localStorage.setItem('token', data.token);
+      } else {
+        const errorData = await response.json();
+        setErrorMessage('Incorrect email or password');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setErrorMessage('Something went wrong. Please try again later');
+    }
   };
 
   const handleRegisterClick = (event) => {
@@ -32,6 +58,8 @@ const Login = () => {
       <div className={styles.loginContainer}>
         <div className={styles.loginCard}>
           <h2 className={styles.loginTitle}>Login</h2>
+          {errorMessage && <div className={styles.error}>{errorMessage}</div>}
+          <br />
           <form onSubmit={handleSubmit}>
             <div className={styles.inputGroup}>
               <i className="bi bi-envelope-fill"></i>

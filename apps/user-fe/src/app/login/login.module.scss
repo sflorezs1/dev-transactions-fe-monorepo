@@ -115,11 +115,10 @@ body {
 @media only screen and (min-width: 768px) {
   .loginContainer {
     width: 27rem; 
-    height: 30rem; 
   }
 
   .title {
-    font-size: 5rem; 
+  font-size: 5rem;
     margin-right: 2rem;
   }
 }
@@ -127,7 +126,6 @@ body {
 @media only screen and (max-width: 767px) {
   .loginContainer {
     width: 20rem; 
-    height: 28rem; 
   }
 
   .title {
@@ -216,4 +214,9 @@ body {
   width: 25rem; 
   max-width: 80%;
   box-sizing: border-box;
+}
+
+.error {
+  color: red;
+	text-align: center;
 }
