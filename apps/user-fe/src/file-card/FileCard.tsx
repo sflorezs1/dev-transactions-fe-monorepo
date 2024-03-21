@@ -1,25 +1,21 @@
 // FileCard.tsx
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import {
-  File,
-  getIconClass,
-  getSubIconClass,
-} from '@dev-transactions-fe-monorepo/libs/files'; // Import the File interface from where you've defined it
 import OverlayTrigger from 'react-bootstrap/esm/OverlayTrigger';
 import Tooltip from 'react-bootstrap/esm/Tooltip';
 
 interface FileCardProps {
-  file: File;
+  file: {
+    filename: string;
+    id: string;
+  };
 }
 
 const FileCard: React.FC<FileCardProps> = ({ file }) => {
   // Combine filename and extension for display and tooltip
-  const fullFileName = `${file.filename}.${file.extension}`;
+  const fullFileName = `${file.filename}`;
   // In the FileCard component
-  const subIconClass = getSubIconClass(file.type);
 
-  const iconClass = getIconClass(file.extension);
   return (
     <Card style={{ textAlign: 'center' }}>
       <Card.Body>
@@ -31,20 +27,7 @@ const FileCard: React.FC<FileCardProps> = ({ file }) => {
             display: 'inline-block',
           }}
         >
-          <i className={`bi ${iconClass}`}></i>
-          <i
-            className={`bi ${subIconClass}`}
-            style={{
-              fontSize: '1rem',
-              position: 'absolute',
-              bottom: '15%',
-              right: '10%',
-              color: 'blue',
-              transform: 'translate(50%, 50%)', // Adjust to align it exactly where you want
-            }}
-          ></i>
         </div>
-
         <OverlayTrigger
           placement="top"
           overlay={
@@ -59,7 +42,6 @@ const FileCard: React.FC<FileCardProps> = ({ file }) => {
             }}
           >
             {file.filename}
-            {file.extension}
           </Card.Title>
         </OverlayTrigger>
       </Card.Body>

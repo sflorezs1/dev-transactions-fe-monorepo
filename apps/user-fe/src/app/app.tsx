@@ -1,5 +1,5 @@
 // src/app/app.tsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -52,20 +52,51 @@ export function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Navigate replace to="/login" />} />
-        <Route path="/files/*" element={<div className={styles.loginBackground}><FilesDisplayWithHeader files={files} /></div>} />
-        <Route path='/approvals' Component={approvalsPage} />
-        <Route path='/group' Component={groupPage} />
+        <Route path="/files/*" element={<div className={styles.loginBackground}><FilesDisplayWithHeader/></div>} />
+        {/* <Route path='/approvals' Component={approvalsPage} /> */}
+        {/* <Route path='/group' Component={groupPage} /> */}
         <Route path='/change-operator' Component={operatorPage} />
-        <Route path='/request-document' Component={docPage} />
+        {/* <Route path='/request-document' Component={docPage} /> */}
         <Route path='/authenticate-document' Component={authenticatePage} />
-        <Route path='/university-document' Component={universityPage} />
+        {/* <Route path='/university-document' Component={universityPage} /> */}
         <Route path='/register' Component={registerPage} />
       </Routes>
     </Router>
   );
 }
 
-const FilesDisplayWithHeader = ({ files }: { files: File[] }) => {
+const FilesDisplayWithHeader = () => {
+  const [files, setFiles] = useState<{ 
+    id: string;
+    filename: string;
+  }[]>([]);
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+
+  useEffect(() => {
+    const fetchFiles = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_DOCUMENT_BRIDGE_URL}/document/all_documents`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        const data = await response.json();
+        // Assuming the response data is an array of files
+        const fetchedFiles = data;
+        // Update the files state with the fetched files
+        setFiles(fetchedFiles);
+      } catch (error) {
+        console.error('Error fetching files:', error);
+      }
+    };
+
+    fetchFiles();
+  }, []);
+
   return (
     <>
       <Header />

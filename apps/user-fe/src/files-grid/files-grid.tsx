@@ -5,7 +5,10 @@ import Col from 'react-bootstrap/Col';
 import FileCard from '../file-card/FileCard';
 import { File } from '@dev-transactions-fe-monorepo/libs/files';
 
-const FilesGrid = (props: { files: File[] }) => {
+const FilesGrid = (props: { files: {
+  filename: string;
+  id: string;
+}[] }) => {
   return (
     <Container>
       <Row xs={1} sm={2} md={3} lg={4} xl={5}>

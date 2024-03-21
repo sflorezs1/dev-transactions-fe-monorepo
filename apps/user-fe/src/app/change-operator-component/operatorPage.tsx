@@ -13,7 +13,6 @@ const ChangeOperatorPage = () => {
     { id: 4, name: 'Operator 4', icon: faLaptopCode },
     { id: 5, name: 'Operator 5', icon: faComputer },
     { id: 6, name: 'Operator 6', icon: faLaptopFile },
-  
   ];
 
   const [selectedOperator, setSelectedOperator] = useState(null);

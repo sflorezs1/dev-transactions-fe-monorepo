@@ -9,6 +9,12 @@ const authenticatePage = () => {
   const [documentName, setDocumentName] = useState('');
   const [documentType, setDocumentType] = useState('');
 
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    return window.location.href = '/login';
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
   
